@@ -1,8 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:master_class/home.dart';
+import 'package:master_class/profile_page.dart';
+import 'package:master_class/settings.dart';
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({super.key});
+class FirstPage extends StatefulWidget {
+    FirstPage({super.key});
 
+
+
+
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+
+   int _selectedIndex = 0;
+  void _bottomNavigation(int index){
+    // print(index);
+    setState(() {
+      _selectedIndex=index;
+    });
+
+  }
+  final List _pages=[
+    Home(),
+    SettingsPage(),
+    ProfilePage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,13 +61,11 @@ class FirstPage extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(
-        child: ElevatedButton(onPressed: (){
-          Navigator.pushNamed(context, '/second');
-          
-        }, child: const Text('Go to 2nd page')),
-      ),
-      bottomNavigationBar: BottomNavigationBar(items:const [
+body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: _bottomNavigation,
+          items:const [
         BottomNavigationBarItem(
             icon: Icon(Icons.home),
         label:'Home'

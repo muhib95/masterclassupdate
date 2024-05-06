@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: ('babu'),
-      home: const FirstPage(),
+      title: ('myApp'),
+      home:  FirstPage(),
 
       routes: {
 
